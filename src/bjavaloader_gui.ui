@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <!-- interface-requires gtk+ 2.12 -->
+  <!-- interface-naming-policy project-wide -->
+  <object class="GtkListStore" id="CurrentlyConnectedDevicesListStore"/>
+  <object class="GtkWindow" id="main_window">
+    <property name="visible">True</property>
+    <property name="title" translatable="yes">Barry Java Loader</property>
+    <property name="default_width">500</property>
+    <property name="default_height">300</property>
+    <property name="icon_name">phone</property>
+    <child>
+      <object class="GtkVBox" id="vbox1">
+        <property name="visible">True</property>
+        <child>
+          <object class="GtkMenuBar" id="menuBar">
+            <property name="visible">True</property>
+            <child>
+              <object class="GtkMenuItem" id="fileMenu">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">_File</property>
+                <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu" id="fileMenuContents">
+                    <property name="visible">True</property>
+                    <property name="ubuntu_local">True</property>
+                    <child>
+                      <object class="GtkMenuItem" id="mnuFileAddApplication">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">_Add Application...</property>
+                        <property name="use_underline">True</property>
+                        <accelerator key="a" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="mnuFileRemoveApplication">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">_Remove Application</property>
+                        <property name="use_underline">True</property>
+                        <accelerator key="r" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="mnuFileBackupApplication">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">_Backup Application...</property>
+                        <property name="use_underline">True</property>
+                        <accelerator key="b" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorMenuItem" id="separatormenuitem1">
+                        <property name="visible">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="mnuFileQuit">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">_Quit</property>
+                        <property name="use_underline">True</property>
+                        <accelerator key="q" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem" id="editMenu">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">_Edit</property>
+                <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu" id="editMenuContents">
+                    <property name="visible">True</property>
+                    <property name="ubuntu_local">True</property>
+                    <child>
+                      <object class="GtkMenuItem" id="mnuEditCopy">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">_Copy</property>
+                        <property name="use_underline">True</property>
+                        <accelerator key="c" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorMenuItem" id="separatormenuitem2">
+                        <property name="visible">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="mnuEditSelectAll">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">Select _All</property>
+                        <property name="use_underline">True</property>
+                        <accelerator key="a" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem" id="toolsMenu">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">_Tools</property>
+                <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu" id="toolsMenuContents">
+                    <property name="visible">True</property>
+                    <property name="ubuntu_local">True</property>
+                    <child>
+                      <object class="GtkMenuItem" id="mnuToolsDumpStackTraces">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">_Dump Stack Traces to Event Log</property>
+                        <property name="use_underline">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="mnuToolsReloadEventLog">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">_Reload Event Log</property>
+                        <property name="use_underline">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="mnuToolsClearEventLog">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">_Clear Event Log</property>
+                        <property name="use_underline">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorMenuItem" id="separatormenuitem3">
+                        <property name="visible">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="mnuToolsTakeScreenshot">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">Take _Screenshot</property>
+                        <property name="use_underline">True</property>
+                        <accelerator key="s" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorMenuItem" id="separatormenuitem4">
+                        <property name="visible">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="mnuToolsPerformFactoryReset">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">Perform _Factory Reset...</property>
+                        <property name="use_underline">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="mnuToolsWipe">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">_Wipe this BlackBerry...</property>
+                        <property name="use_underline">True</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem" id="helpMenu">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">_Help</property>
+                <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu" id="helpMenuContents">
+                    <property name="visible">True</property>
+                    <property name="ubuntu_local">True</property>
+                    <child>
+                      <object class="GtkMenuItem" id="mnuHelpAboutThisDevice">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">About this _Device</property>
+                        <property name="use_underline">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorMenuItem" id="separatormenuitem5">
+                        <property name="visible">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="mnuHelpAbout">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">_About</property>
+                        <property name="use_underline">True</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkHBox" id="hbox1">
+            <property name="visible">True</property>
+            <child>
+              <object class="GtkLabel" id="lblCurrentlyConnectedDevices">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">Currently Connected Devices:</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkComboBoxEntry" id="CurrentlyConnectedDevicesComboBox">
+                <property name="visible">True</property>
+                <property name="model">CurrentlyConnectedDevicesListStore</property>
+              </object>
+              <packing>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="rescanButton">
+                <property name="label" translatable="yes">Rescan</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkNotebook" id="notebook1">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <child>
+              <object class="GtkVBox" id="applicationsVbox">
+                <property name="visible">True</property>
+                <child>
+                  <object class="GtkToolbar" id="applicationsToolbar">
+                    <property name="visible">True</property>
+                    <child>
+                      <object class="GtkToolButton" id="addApplicationBtn">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">Add Application</property>
+                        <property name="use_underline">True</property>
+                        <property name="stock_id">gtk-add</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="homogeneous">True</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkToolButton" id="removeApplicationBtn">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">Remove Application</property>
+                        <property name="use_underline">True</property>
+                        <property name="stock_id">gtk-delete</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="homogeneous">True</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkToolButton" id="backupApplicationBtn">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">Backup Application</property>
+                        <property name="use_underline">True</property>
+                        <property name="stock_id">gtk-save</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="homogeneous">True</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorToolItem" id="seperator1">
+                        <property name="visible">True</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="homogeneous">True</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkToolButton" id="reloadApplicationList">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">Reload Application List</property>
+                        <property name="use_underline">True</property>
+                        <property name="stock_id">gtk-refresh</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="homogeneous">True</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkScrolledWindow" id="InstalledModulesScrollWindow">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="hscrollbar_policy">automatic</property>
+                    <property name="vscrollbar_policy">automatic</property>
+                    <child>
+                      <placeholder/>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+              </object>
+            </child>
+            <child type="tab">
+              <object class="GtkLabel" id="lblApplicationsTab">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">Applications</property>
+              </object>
+              <packing>
+                <property name="tab_fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkVBox" id="eventLogsVbox">
+                <property name="visible">True</property>
+                <child>
+                  <object class="GtkToolbar" id="eventLogsToolbar">
+                    <property name="visible">True</property>
+                    <property name="toolbar_style">both-horiz</property>
+                    <child>
+                      <object class="GtkToolButton" id="reloadEventLogBtn">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">_Reload Event Log</property>
+                        <property name="use_underline">True</property>
+                        <property name="stock_id">gtk-refresh</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="homogeneous">True</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkToolButton" id="clearEventLogBtn">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">_Clear Event Log</property>
+                        <property name="use_underline">True</property>
+                        <property name="stock_id">gtk-remove</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="homogeneous">True</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkScrolledWindow" id="eventLogScrolledWindow">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="hscrollbar_policy">automatic</property>
+                    <property name="vscrollbar_policy">automatic</property>
+                    <child>
+                      <object class="GtkTextView" id="eventLogViewer">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="editable">False</property>
+                        <property name="buffer">EventLogBuffer</property>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child type="tab">
+              <object class="GtkLabel" id="lblEventLogs">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">Event Logs</property>
+              </object>
+              <packing>
+                <property name="position">1</property>
+                <property name="tab_fill">False</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="position">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkStatusbar" id="mainWindowStatusBar">
+            <property name="visible">True</property>
+            <property name="spacing">2</property>
+            <child>
+              <object class="GtkLabel" id="statusBarText">
+                <property name="visible">True</property>
+                <property name="xalign">0</property>
+                <property name="yalign">0</property>
+                <property name="width_chars">33</property>
+                <property name="single_line_mode">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkProgressBar" id="statusBarProgress">
+                <property name="visible">True</property>
+              </object>
+              <packing>
+                <property name="pack_type">end</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="position">3</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkTextBuffer" id="EventLogBuffer"/>
+</interface>
